@@ -1,0 +1,61 @@
+name:                network-types-icmp
+version:             1.0.0.0
+github:              "adamflott/network-types-icmp"
+license:             BSD3
+author:              "Adam Flott"
+maintainer:          "adam@adamflott.com"
+copyright:           "2020 Adam Flott"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            Types for representing ICMP and ICMPv6 messages.
+
+category: Network
+description: |
+  Types for representing ICMP and ICMPv6 messages.
+
+  Includes conversion functions between strings and numeric codes.
+
+tested-with:
+               GHC == 8.6.5
+             , GHC == 8.8.3
+             , GHC == 8.10.1
+dependencies:
+- base >= 4.7 && < 5
+
+ghc-options:
+  - -Wall
+  - -fwarn-unused-imports
+  - -fhide-source-paths
+  - -Widentities
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+  - -Wredundant-constraints
+  - -Wpartial-fields
+  - -fwrite-ide-info
+  - -hiedir=.hie
+  - -Wmissing-deriving-strategies
+  - -Wmissing-export-lists
+
+default-extensions:
+  - OverloadedStrings
+  - DerivingStrategies
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Network.Types.ICMP
+    - Network.Types.ICMPv6
+
+tests:
+  network-types-icmp-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - network-types-icmp
