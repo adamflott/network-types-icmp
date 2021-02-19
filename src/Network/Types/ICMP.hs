@@ -38,7 +38,7 @@ module Network.Types.ICMP (
 -- base
 import Data.String (IsString)
 import Data.Word (Word8)
-
+import GHC.Generics
 
 -- | Wrap a numeric ICMP type.
 --
@@ -94,7 +94,7 @@ data ICMPType
     | ICMPType253Rfc3692styleExperiment1 -- ^ RFC3692-style Experiment 1
     | ICMPType254Rfc3692styleExperiment2 -- ^ RFC3692-style Experiment 2
     | ICMPType255Reserved -- ^ Reserved
-    deriving stock (Bounded, Eq, Enum, Ord, Show)
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
 
 
 -- | Wrap a numeric ICMP code.

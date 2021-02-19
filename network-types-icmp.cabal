@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 20b53d34602b00c44fb023e0d91f9ac310895b4dc2fd5f74dddaefd1acb8d169
+-- hash: 67c82d249bd24821830bd3c7167a266b8da8c3126440963e882874c564a6c301
 
 name:           network-types-icmp
 version:        1.0.0.1
@@ -38,7 +38,7 @@ library
       Paths_network_types_icmp
   hs-source-dirs:
       src
-  default-extensions: OverloadedStrings DerivingStrategies
+  default-extensions: OverloadedStrings DerivingStrategies DeriveGeneric
   build-depends:
       base >=4.7 && <5
   if impl(ghc >= 8.8.3)
@@ -54,7 +54,7 @@ test-suite network-types-icmp-test
       Paths_network_types_icmp
   hs-source-dirs:
       test
-  default-extensions: OverloadedStrings DerivingStrategies
+  default-extensions: OverloadedStrings DerivingStrategies DeriveGeneric
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5

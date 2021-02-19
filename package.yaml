@@ -61,6 +61,7 @@ when:
 default-extensions:
   - OverloadedStrings
   - DerivingStrategies
+  - DeriveGeneric
 
 library:
   source-dirs: src

@@ -37,7 +37,7 @@ module Network.Types.ICMPv6 (
 -- base
 import Data.String (IsString)
 import Data.Word (Word8)
-
+import GHC.Generics
 
 -- | Wrap a numeric ICMPv6 type.
 --
@@ -95,7 +95,7 @@ data ICMPv6Type
     | ICMPv6Type200PrivateExperimentation -- ^ Private experimentation
     | ICMPv6Type201PrivateExperimentation -- ^ Private experimentation
     | ICMPv6Type255ReservedForExpansionOfIcmpv6InformationalMessages -- ^ Reserved for expansion of ICMPv6 informational    messages
-    deriving stock (Bounded, Eq, Enum, Ord, Show)
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
 
 
 -- | Wrap a numeric ICMPv6 code.
