@@ -36,6 +36,7 @@ module Network.Types.ICMP{{ $four_or_six }} (
     , icmp{{ $four_or_six }}TypeToStringNum
     , icmp{{ $four_or_six }}TypeFromStringNum
     , icmp{{ $four_or_six }}TypeToNum
+    , icmp{{ $four_or_six }}CodeToStringNum
 
     -- * Deprecated testing
     , isICMP{{ $four_or_six }}TypeDeprecated
@@ -108,7 +109,6 @@ icmp{{ $four_or_six }}CodesForType ty = case ty of
   {{- end -}}
 {{ end }}
 
-
 -- | Convert a 'ICMP{{ $four_or_six }}Type' into a string.
 --
 -- @since 1.0.0.0
@@ -163,3 +163,20 @@ isICMP{{ $four_or_six }}TypeDeprecated ty = case ty of
 {{ end -}}
 {{ end }}
    ICMP{{ $four_or_six }}TypeUnknown -> False
+
+
+-- | Convert a 'ICMP{{ $four_or_six }}Code' into a string.
+--
+-- @since 1.0.3.0
+icmp{{ $four_or_six }}CodeToStringNum :: IsString a => ICMP{{ $four_or_six }}Code -> a
+icmp{{ $four_or_six }}CodeToStringNum t = case t of
+{{- range $t := .M -}}
+  {{ if not $t.IsUnassigned -}}
+    {{- range $i, $c := $t.TCodes -}}
+        {{- if not $c.IsUnassigned }}
+        ICMP{{ $four_or_six }}Type{{ $t.TypeCode }}Code{{ $c.Value }} -> "{{ $c.Value -}}"
+        {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{ end }}
+        ICMP{{ $four_or_six }}CodeUnknown -> "?"

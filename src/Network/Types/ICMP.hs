@@ -28,6 +28,7 @@ module Network.Types.ICMP (
     , icmpTypeToStringNum
     , icmpTypeFromStringNum
     , icmpTypeToNum
+    , icmpCodeToStringNum
 
     -- * Deprecated testing
     , isICMPTypeDeprecated
@@ -303,7 +304,6 @@ icmpCodesForType ty = case ty of
     ICMPType255Reserved -> [
         ]
 
-
 -- | Convert a 'ICMPType' into a string.
 --
 -- @since 1.0.0.0
@@ -506,3 +506,61 @@ isICMPTypeDeprecated ty = case ty of
    ICMPType254Rfc3692styleExperiment2-> False
    ICMPType255Reserved-> False
    ICMPTypeUnknown -> False
+
+
+-- | Convert a 'ICMPCode' into a string.
+--
+-- @since 1.0.3.0
+icmpCodeToStringNum :: IsString a => ICMPCode -> a
+icmpCodeToStringNum t = case t of
+        ICMPType0Code0 -> "0"
+        ICMPType3Code0 -> "0"
+        ICMPType3Code1 -> "1"
+        ICMPType3Code2 -> "2"
+        ICMPType3Code3 -> "3"
+        ICMPType3Code4 -> "4"
+        ICMPType3Code5 -> "5"
+        ICMPType3Code6 -> "6"
+        ICMPType3Code7 -> "7"
+        ICMPType3Code8 -> "8"
+        ICMPType3Code9 -> "9"
+        ICMPType3Code10 -> "10"
+        ICMPType3Code11 -> "11"
+        ICMPType3Code12 -> "12"
+        ICMPType3Code13 -> "13"
+        ICMPType3Code14 -> "14"
+        ICMPType3Code15 -> "15"
+        ICMPType4Code0 -> "0"
+        ICMPType5Code0 -> "0"
+        ICMPType5Code1 -> "1"
+        ICMPType5Code2 -> "2"
+        ICMPType5Code3 -> "3"
+        ICMPType6Code0 -> "0"
+        ICMPType8Code0 -> "0"
+        ICMPType9Code0 -> "0"
+        ICMPType9Code16 -> "16"
+        ICMPType10Code0 -> "0"
+        ICMPType11Code0 -> "0"
+        ICMPType11Code1 -> "1"
+        ICMPType12Code0 -> "0"
+        ICMPType12Code1 -> "1"
+        ICMPType12Code2 -> "2"
+        ICMPType13Code0 -> "0"
+        ICMPType14Code0 -> "0"
+        ICMPType15Code0 -> "0"
+        ICMPType16Code0 -> "0"
+        ICMPType17Code0 -> "0"
+        ICMPType18Code0 -> "0"
+        ICMPType40Code0 -> "0"
+        ICMPType40Code1 -> "1"
+        ICMPType40Code2 -> "2"
+        ICMPType40Code3 -> "3"
+        ICMPType40Code4 -> "4"
+        ICMPType40Code5 -> "5"
+        ICMPType42Code0 -> "0"
+        ICMPType43Code0 -> "0"
+        ICMPType43Code1 -> "1"
+        ICMPType43Code2 -> "2"
+        ICMPType43Code3 -> "3"
+        ICMPType43Code4 -> "4"
+        ICMPCodeUnknown -> "?"

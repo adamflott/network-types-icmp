@@ -27,6 +27,7 @@ module Network.Types.ICMPv6 (
     , icmpv6TypeToStringNum
     , icmpv6TypeFromStringNum
     , icmpv6TypeToNum
+    , icmpv6CodeToStringNum
 
     -- * Deprecated testing
     , isICMPv6TypeDeprecated
@@ -336,7 +337,6 @@ icmpv6CodesForType ty = case ty of
     ICMPv6Type255ReservedForExpansionOfIcmpv6InformationalMessages -> [
         ]
 
-
 -- | Convert a 'ICMPv6Type' into a string.
 --
 -- @since 1.0.0.0
@@ -547,3 +547,75 @@ isICMPv6TypeDeprecated ty = case ty of
    ICMPv6Type201PrivateExperimentation-> False
    ICMPv6Type255ReservedForExpansionOfIcmpv6InformationalMessages-> False
    ICMPv6TypeUnknown -> False
+
+
+-- | Convert a 'ICMPv6Code' into a string.
+--
+-- @since 1.0.3.0
+icmpv6CodeToStringNum :: IsString a => ICMPv6Code -> a
+icmpv6CodeToStringNum t = case t of
+        ICMPv6Type1Code0 -> "0"
+        ICMPv6Type1Code1 -> "1"
+        ICMPv6Type1Code2 -> "2"
+        ICMPv6Type1Code3 -> "3"
+        ICMPv6Type1Code4 -> "4"
+        ICMPv6Type1Code5 -> "5"
+        ICMPv6Type1Code6 -> "6"
+        ICMPv6Type1Code7 -> "7"
+        ICMPv6Type1Code8 -> "8"
+        ICMPv6Type2Code0 -> "0"
+        ICMPv6Type3Code0 -> "0"
+        ICMPv6Type3Code1 -> "1"
+        ICMPv6Type4Code0 -> "0"
+        ICMPv6Type4Code1 -> "1"
+        ICMPv6Type4Code2 -> "2"
+        ICMPv6Type4Code3 -> "3"
+        ICMPv6Type4Code4 -> "4"
+        ICMPv6Type4Code5 -> "5"
+        ICMPv6Type4Code6 -> "6"
+        ICMPv6Type4Code7 -> "7"
+        ICMPv6Type4Code8 -> "8"
+        ICMPv6Type4Code9 -> "9"
+        ICMPv6Type4Code10 -> "10"
+        ICMPv6Type128Code0 -> "0"
+        ICMPv6Type129Code0 -> "0"
+        ICMPv6Type130Code0 -> "0"
+        ICMPv6Type131Code0 -> "0"
+        ICMPv6Type132Code0 -> "0"
+        ICMPv6Type133Code0 -> "0"
+        ICMPv6Type134Code0 -> "0"
+        ICMPv6Type135Code0 -> "0"
+        ICMPv6Type136Code0 -> "0"
+        ICMPv6Type137Code0 -> "0"
+        ICMPv6Type138Code0 -> "0"
+        ICMPv6Type138Code1 -> "1"
+        ICMPv6Type138Code255 -> "255"
+        ICMPv6Type139Code0 -> "0"
+        ICMPv6Type139Code1 -> "1"
+        ICMPv6Type139Code2 -> "2"
+        ICMPv6Type140Code0 -> "0"
+        ICMPv6Type140Code1 -> "1"
+        ICMPv6Type140Code2 -> "2"
+        ICMPv6Type141Code0 -> "0"
+        ICMPv6Type142Code0 -> "0"
+        ICMPv6Type144Code0 -> "0"
+        ICMPv6Type145Code0 -> "0"
+        ICMPv6Type146Code0 -> "0"
+        ICMPv6Type147Code0 -> "0"
+        ICMPv6Type157Code0 -> "0"
+        ICMPv6Type157Code1 -> "1"
+        ICMPv6Type157Code2 -> "2"
+        ICMPv6Type157Code3 -> "3"
+        ICMPv6Type157Code4 -> "4"
+        ICMPv6Type158Code0 -> "0"
+        ICMPv6Type158Code1 -> "1"
+        ICMPv6Type158Code2 -> "2"
+        ICMPv6Type158Code3 -> "3"
+        ICMPv6Type158Code4 -> "4"
+        ICMPv6Type160Code0 -> "0"
+        ICMPv6Type161Code0 -> "0"
+        ICMPv6Type161Code1 -> "1"
+        ICMPv6Type161Code2 -> "2"
+        ICMPv6Type161Code3 -> "3"
+        ICMPv6Type161Code4 -> "4"
+        ICMPv6CodeUnknown -> "?"
