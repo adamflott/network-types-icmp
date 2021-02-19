@@ -10,7 +10,7 @@ Portability : POSIX
 Data types and conversions for ICMPv6 automatically built from the specification at
 <https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xml>
 
-Specification date: ?
+Specification date: 2021-01-27
 -}
 module Network.Types.ICMPv6 (
     -- * Types
@@ -173,7 +173,7 @@ data ICMPv6Code
     | ICMPv6Type161Code2 -- ^ Type 161 code 2 - No Such Interface
     | ICMPv6Type161Code3 -- ^ Type 161 code 3 - No Such Table Entry
     | ICMPv6Type161Code4 -- ^ Type 161 code 4 - Multiple Interfaces Satisfy Query
-
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
 
 -- | Get a list of 'ICMPv6Code' for a given 'ICMPv6Type'.
 --

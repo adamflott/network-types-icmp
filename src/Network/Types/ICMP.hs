@@ -11,7 +11,7 @@ Data types and conversions for ICMP automatically built from the specification a
 <https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xml>
 
 
-Specification date: ?
+Specification date: 2020-09-25
 -}
 module Network.Types.ICMP (
     -- * Types
@@ -158,7 +158,7 @@ data ICMPCode
     | ICMPType43Code2 -- ^ Type 43 code 2 - No Such Interface
     | ICMPType43Code3 -- ^ Type 43 code 3 - No Such Table Entry
     | ICMPType43Code4 -- ^ Type 43 code 4 - Multiple Interfaces Satisfy Query
-
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
 
 -- | Get a list of 'ICMPCode' for a given 'ICMPType'.
 --
