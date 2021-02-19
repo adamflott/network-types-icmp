@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 67c82d249bd24821830bd3c7167a266b8da8c3126440963e882874c564a6c301
+-- hash: 8310c4d241aed6e4a67220a10fe5f02f6e713575d5089b52a969aba40d742235
 
 name:           network-types-icmp
-version:        1.0.0.1
+version:        1.0.0.2
 synopsis:       Types for representing ICMP and ICMPv6 messages.
 description:    Types for representing ICMP and ICMPv6 messages.
                 .
