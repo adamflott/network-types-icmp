@@ -1,7 +1,7 @@
 {-|
 Module      : Network.Types.ICMPv6
 Description : Data types for ICMPv6 types and codes
-Copyright   : (c) 2020 Adam Flott
+Copyright   : (c) 2021 Adam Flott
 License     : BSD-3-Clause
 Maintainer  : adam@adamflott.com
 Stability   : experimental
