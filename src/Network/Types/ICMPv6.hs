@@ -42,13 +42,13 @@ import GHC.Generics
 
 -- | Wrap a numeric ICMPv6 type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMPv6TypeNum = ICMPv6TypeNum Word8
 
 
 -- | ICMPv6 type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMPv6Type
     = ICMPv6TypeUnknown
     | ICMPv6Type0Reserved -- ^ Reserved
@@ -101,13 +101,13 @@ data ICMPv6Type
 
 -- | Wrap a numeric ICMPv6 code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMPv6CodeNum = ICMPv6CodeNum Word8
 
 
 -- | ICMPv6 code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMPv6Code
     = ICMPv6CodeUnknown -- ^ Unknown code
     | ICMPv6Type1Code0 -- ^ Type 1 code 0 - no route to destination
@@ -178,7 +178,7 @@ data ICMPv6Code
 
 -- | Get a list of 'ICMPv6Code' for a given 'ICMPv6Type'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpv6CodesForType :: ICMPv6Type -> [ICMPv6Code]
 icmpv6CodesForType ty = case ty of
     ICMPv6TypeUnknown -> []
@@ -339,7 +339,7 @@ icmpv6CodesForType ty = case ty of
 
 -- | Convert a 'ICMPv6Type' into a string.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpv6TypeToStringNum :: IsString a => ICMPv6Type -> a
 icmpv6TypeToStringNum t = case t of
     ICMPv6Type0Reserved -> "0"
@@ -392,7 +392,7 @@ icmpv6TypeToStringNum t = case t of
 
 -- | Convert a string into a 'ICMPv6Type'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpv6TypeFromStringNum :: (Eq a, IsString a) => a -> ICMPv6Type
 icmpv6TypeFromStringNum s = case s of
     "0" -> ICMPv6Type0Reserved
@@ -445,7 +445,7 @@ icmpv6TypeFromStringNum s = case s of
 
 -- | Turn an 'ICMPv6Type' into a 'ICMPv6TypeNum'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpv6TypeToNum :: ICMPv6Type -> ICMPv6TypeNum
 icmpv6TypeToNum t = case t of
     ICMPv6Type0Reserved -> ICMPv6TypeNum 0
@@ -498,7 +498,7 @@ icmpv6TypeToNum t = case t of
 
 -- | Test if an 'ICMPv6Type' has been deprecated.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 isICMPv6TypeDeprecated :: ICMPv6Type -> Bool
 isICMPv6TypeDeprecated ty = case ty of
    ICMPv6Type0Reserved-> False
@@ -551,7 +551,7 @@ isICMPv6TypeDeprecated ty = case ty of
 
 -- | Convert a 'ICMPv6Code' into a string.
 --
--- @since 1.0.3.0
+-- @since 1.0.1
 icmpv6CodeToStringNum :: IsString a => ICMPv6Code -> a
 icmpv6CodeToStringNum t = case t of
         ICMPv6Type1Code0 -> "0"

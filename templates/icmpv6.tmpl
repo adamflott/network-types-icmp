@@ -51,13 +51,13 @@ import GHC.Generics
 
 -- | Wrap a numeric ICMP{{ $four_or_six }} type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMP{{ $four_or_six }}TypeNum = ICMP{{ $four_or_six }}TypeNum Word8
 
 
 -- | ICMP{{ $four_or_six }} type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMP{{ $four_or_six }}Type
     = ICMP{{ $four_or_six }}TypeUnknown
 {{- range .M -}}
@@ -70,13 +70,13 @@ data ICMP{{ $four_or_six }}Type
 
 -- | Wrap a numeric ICMP{{ $four_or_six }} code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMP{{ $four_or_six }}CodeNum = ICMP{{ $four_or_six }}CodeNum Word8
 
 
 -- | ICMP{{ $four_or_six }} code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMP{{ $four_or_six }}Code
     = ICMP{{ $four_or_six }}CodeUnknown -- ^ Unknown code
 {{- range $t := .M -}}
@@ -92,7 +92,7 @@ data ICMP{{ $four_or_six }}Code
 
 -- | Get a list of 'ICMP{{ $four_or_six }}Code' for a given 'ICMP{{ $four_or_six }}Type'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmp{{ $four_or_six }}CodesForType :: ICMP{{ $four_or_six }}Type -> [ICMP{{ $four_or_six }}Code]
 icmp{{ $four_or_six }}CodesForType ty = case ty of
     ICMP{{ $four_or_six }}TypeUnknown -> []
@@ -111,7 +111,7 @@ icmp{{ $four_or_six }}CodesForType ty = case ty of
 
 -- | Convert a 'ICMP{{ $four_or_six }}Type' into a string.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmp{{ $four_or_six }}TypeToStringNum :: IsString a => ICMP{{ $four_or_six }}Type -> a
 icmp{{ $four_or_six }}TypeToStringNum t = case t of
 {{- range .M -}}
@@ -124,7 +124,7 @@ icmp{{ $four_or_six }}TypeToStringNum t = case t of
 
 -- | Convert a string into a 'ICMP{{ $four_or_six }}Type'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmp{{ $four_or_six }}TypeFromStringNum :: (Eq a, IsString a) => a -> ICMP{{ $four_or_six }}Type
 icmp{{ $four_or_six }}TypeFromStringNum s = case s of
 {{- range .M -}}
@@ -137,7 +137,7 @@ icmp{{ $four_or_six }}TypeFromStringNum s = case s of
 
 -- | Turn an 'ICMP{{ $four_or_six }}Type' into a 'ICMP{{ $four_or_six }}TypeNum'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmp{{ $four_or_six }}TypeToNum :: ICMP{{ $four_or_six }}Type -> ICMP{{ $four_or_six }}TypeNum
 icmp{{ $four_or_six }}TypeToNum t = case t of
 {{- range .M -}}
@@ -150,7 +150,7 @@ icmp{{ $four_or_six }}TypeToNum t = case t of
 
 -- | Test if an 'ICMP{{ $four_or_six }}Type' has been deprecated.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 isICMP{{ $four_or_six }}TypeDeprecated :: ICMP{{ $four_or_six }}Type -> Bool
 isICMP{{ $four_or_six }}TypeDeprecated ty = case ty of
 {{- range $t := .M -}}
@@ -167,7 +167,7 @@ isICMP{{ $four_or_six }}TypeDeprecated ty = case ty of
 
 -- | Convert a 'ICMP{{ $four_or_six }}Code' into a string.
 --
--- @since 1.0.3.0
+-- @since 1.0.1
 icmp{{ $four_or_six }}CodeToStringNum :: IsString a => ICMP{{ $four_or_six }}Code -> a
 icmp{{ $four_or_six }}CodeToStringNum t = case t of
 {{- range $t := .M -}}

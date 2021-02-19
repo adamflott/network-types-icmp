@@ -1,5 +1,5 @@
 name:                network-types-icmp
-version:             1.0.0.2
+version:             1.0.1
 github:              "adamflott/network-types-icmp"
 license:             BSD3
 author:              "Adam Flott"

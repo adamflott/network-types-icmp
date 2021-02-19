@@ -43,13 +43,13 @@ import GHC.Generics
 
 -- | Wrap a numeric ICMP type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMPTypeNum = ICMPTypeNum Word8
 
 
 -- | ICMP type.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMPType
     = ICMPTypeUnknown
     | ICMPType0EchoReply -- ^ Echo Reply
@@ -100,13 +100,13 @@ data ICMPType
 
 -- | Wrap a numeric ICMP code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 newtype ICMPCodeNum = ICMPCodeNum Word8
 
 
 -- | ICMP code.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 data ICMPCode
     = ICMPCodeUnknown -- ^ Unknown code
     | ICMPType0Code0 -- ^ Type 0 code 0 - No Code
@@ -163,7 +163,7 @@ data ICMPCode
 
 -- | Get a list of 'ICMPCode' for a given 'ICMPType'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpCodesForType :: ICMPType -> [ICMPCode]
 icmpCodesForType ty = case ty of
     ICMPTypeUnknown -> []
@@ -306,7 +306,7 @@ icmpCodesForType ty = case ty of
 
 -- | Convert a 'ICMPType' into a string.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpTypeToStringNum :: IsString a => ICMPType -> a
 icmpTypeToStringNum t = case t of
     ICMPType0EchoReply -> "0"
@@ -357,7 +357,7 @@ icmpTypeToStringNum t = case t of
 
 -- | Convert a string into a 'ICMPType'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpTypeFromStringNum :: (Eq a, IsString a) => a -> ICMPType
 icmpTypeFromStringNum s = case s of
     "0" -> ICMPType0EchoReply
@@ -408,7 +408,7 @@ icmpTypeFromStringNum s = case s of
 
 -- | Turn an 'ICMPType' into a 'ICMPTypeNum'.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 icmpTypeToNum :: ICMPType -> ICMPTypeNum
 icmpTypeToNum t = case t of
     ICMPType0EchoReply -> ICMPTypeNum 0
@@ -459,7 +459,7 @@ icmpTypeToNum t = case t of
 
 -- | Test if an 'ICMPType' has been deprecated.
 --
--- @since 1.0.0.0
+-- @since 1.0.0
 isICMPTypeDeprecated :: ICMPType -> Bool
 isICMPTypeDeprecated ty = case ty of
    ICMPType0EchoReply-> False
@@ -510,7 +510,7 @@ isICMPTypeDeprecated ty = case ty of
 
 -- | Convert a 'ICMPCode' into a string.
 --
--- @since 1.0.3.0
+-- @since 1.0.1
 icmpCodeToStringNum :: IsString a => ICMPCode -> a
 icmpCodeToStringNum t = case t of
         ICMPType0Code0 -> "0"
