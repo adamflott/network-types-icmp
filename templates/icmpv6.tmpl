@@ -1,0 +1,165 @@
+{{- $four_or_six := .FourOrSix -}}
+{-|
+Module      : Network.Types.ICMP{{ $four_or_six }}
+{{ if $four_or_six -}}
+Description : Data types for ICMPv6 types and codes
+{{ else -}}
+Description : Data types for ICMP types and codes
+{{ end -}}
+Copyright   : (c) 2021 Adam Flott
+License     : BSD-3-Clause
+Maintainer  : adam@adamflott.com
+Stability   : experimental
+Portability : POSIX
+
+Data types and conversions for ICMP{{ $four_or_six }} automatically built from the specification at
+{{ if $four_or_six -}}
+<https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xml>
+{{- else -}}
+<https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xml>
+{{ end }}
+
+Specification date: {{ .Updated }}
+-}
+module Network.Types.ICMP{{ $four_or_six }} (
+    -- * Types
+    ICMP{{ $four_or_six }}Type(..)
+
+    -- * Codes
+    , ICMP{{ $four_or_six }}CodeNum(..)
+    , ICMP{{ $four_or_six }}Code(..)
+
+    -- * Codes from Type
+    , icmp{{ $four_or_six }}CodesForType
+
+    -- * Conversions
+    , icmp{{ $four_or_six }}TypeToStringNum
+    , icmp{{ $four_or_six }}TypeFromStringNum
+    , icmp{{ $four_or_six }}TypeToNum
+
+    -- * Deprecated testing
+    , isICMP{{ $four_or_six }}TypeDeprecated
+
+) where
+
+
+-- base
+import Data.String (IsString)
+import Data.Word (Word8)
+import GHC.Generics
+
+-- | Wrap a numeric ICMP{{ $four_or_six }} type.
+--
+-- @since 1.0.0.0
+newtype ICMP{{ $four_or_six }}TypeNum = ICMP{{ $four_or_six }}TypeNum Word8
+
+
+-- | ICMP{{ $four_or_six }} type.
+--
+-- @since 1.0.0.0
+data ICMP{{ $four_or_six }}Type
+    = ICMP{{ $four_or_six }}TypeUnknown
+{{- range .M -}}
+    {{ if not .IsUnassigned }}
+    | {{ .TypeName }} -- ^ {{ .Description -}}
+    {{ end -}}
+{{ end }}
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
+
+
+-- | Wrap a numeric ICMP{{ $four_or_six }} code.
+--
+-- @since 1.0.0.0
+newtype ICMP{{ $four_or_six }}CodeNum = ICMP{{ $four_or_six }}CodeNum Word8
+
+
+-- | ICMP{{ $four_or_six }} code.
+--
+-- @since 1.0.0.0
+data ICMP{{ $four_or_six }}Code
+    = ICMP{{ $four_or_six }}CodeUnknown -- ^ Unknown code
+{{- range $t := .M -}}
+{{ range $c := $t.TCodes -}}
+{{ if (not $t.IsUnassigned) }}
+    {{- if not $c.IsUnassigned }}
+    | ICMP{{ $four_or_six }}Type{{ $t.TypeCode }}Code{{ $c.Value }} -- ^ Type {{ $t.TypeCode }} code {{ $c.Value }} - {{ $c.Name -}}
+    {{- end -}}
+{{ end -}}
+{{ end -}}
+{{ end }}
+    deriving stock (Bounded, Eq, Enum, Generic, Ord, Show)
+
+-- | Get a list of 'ICMP{{ $four_or_six }}Code' for a given 'ICMP{{ $four_or_six }}Type'.
+--
+-- @since 1.0.0.0
+icmp{{ $four_or_six }}CodesForType :: ICMP{{ $four_or_six }}Type -> [ICMP{{ $four_or_six }}Code]
+icmp{{ $four_or_six }}CodesForType ty = case ty of
+    ICMP{{ $four_or_six }}TypeUnknown -> []
+{{- range $t := .M -}}
+  {{ if not $t.IsUnassigned }}
+    {{ .TypeName }} -> [
+    {{- range $i, $c := $t.TCodes -}}
+        {{- if not $c.IsUnassigned -}}
+        {{ if $i }},{{ end }}
+        ICMP{{ $four_or_six }}Type{{ $t.TypeCode }}Code{{ $c.Value -}}
+        {{- end -}}
+    {{ end }}
+        ]
+  {{- end -}}
+{{ end }}
+
+
+-- | Convert a 'ICMP{{ $four_or_six }}Type' into a string.
+--
+-- @since 1.0.0.0
+icmp{{ $four_or_six }}TypeToStringNum :: IsString a => ICMP{{ $four_or_six }}Type -> a
+icmp{{ $four_or_six }}TypeToStringNum t = case t of
+{{- range .M -}}
+{{ if not .IsUnassigned }}
+    {{ .TypeName }} -> "{{- .TypeCode -}}"
+{{- end -}}
+{{ end }}
+    ICMP{{ $four_or_six }}TypeUnknown -> "?"
+
+
+-- | Convert a string into a 'ICMP{{ $four_or_six }}Type'.
+--
+-- @since 1.0.0.0
+icmp{{ $four_or_six }}TypeFromStringNum :: (Eq a, IsString a) => a -> ICMP{{ $four_or_six }}Type
+icmp{{ $four_or_six }}TypeFromStringNum s = case s of
+{{- range .M -}}
+{{ if not .IsUnassigned }}
+    "{{ .TypeCode }}" -> {{ .TypeName -}}
+{{ end -}}
+{{ end }}
+    _ -> ICMP{{ $four_or_six }}TypeUnknown
+
+
+-- | Turn an 'ICMP{{ $four_or_six }}Type' into a 'ICMP{{ $four_or_six }}TypeNum'.
+--
+-- @since 1.0.0.0
+icmp{{ $four_or_six }}TypeToNum :: ICMP{{ $four_or_six }}Type -> ICMP{{ $four_or_six }}TypeNum
+icmp{{ $four_or_six }}TypeToNum t = case t of
+{{- range .M -}}
+{{ if not .IsUnassigned }}
+    {{ .TypeName }} -> ICMP{{ $four_or_six }}TypeNum {{ .TypeCode -}}
+{{ end -}}
+{{ end }}
+    ICMP{{ $four_or_six }}TypeUnknown -> ICMP{{ $four_or_six }}TypeNum 0
+
+
+-- | Test if an 'ICMP{{ $four_or_six }}Type' has been deprecated.
+--
+-- @since 1.0.0.0
+isICMP{{ $four_or_six }}TypeDeprecated :: ICMP{{ $four_or_six }}Type -> Bool
+isICMP{{ $four_or_six }}TypeDeprecated ty = case ty of
+{{- range $t := .M -}}
+{{ if not $t.IsUnassigned -}}
+{{ if $t.IsDeprecated }}
+   {{ .TypeName -}} -> True
+{{- else }}
+   {{ .TypeName -}} -> False
+{{- end -}}
+{{ end -}}
+{{ end }}
+   ICMP{{ $four_or_six }}TypeUnknown -> False
